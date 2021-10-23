@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>Hello World</title>
+    <url>/uncategorized/hello-world.html</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>开启bbr加速</title>
+    <url>/linux/%E5%BC%80%E5%90%AFbbr%E5%8A%A0%E9%80%9F.html</url>
+    <content><![CDATA[<h3 id="由于Centos8-Debian-Ubuntu这几个版本的内核都内置了bbr，只需用命令开启即可，不需要升级内核，而Centos7则需要升级内核，详情请看下面"><a href="#由于Centos8-Debian-Ubuntu这几个版本的内核都内置了bbr，只需用命令开启即可，不需要升级内核，而Centos7则需要升级内核，详情请看下面" class="headerlink" title="由于Centos8,Debian,Ubuntu这几个版本的内核都内置了bbr，只需用命令开启即可，不需要升级内核，而Centos7则需要升级内核，详情请看下面"></a>由于Centos8,Debian,Ubuntu这几个版本的内核都内置了bbr，只需用命令开启即可，不需要升级内核，而Centos7则需要升级内核，详情请看下面</h3><p>Centos8,Debian,Ubuntu开启bbr</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;net.core.default_qdisc=fq&quot;</span> &gt;&gt; /etc/sysctl.conf</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;net.ipv4.tcp_congestion_control=bbr&quot;</span> &gt;&gt; /etc/sysctl.conf</span><br><span class="line"></span><br><span class="line">sysctl -p</span><br></pre></td></tr></table></figure>
+
+<p>然后执行如下命令查看配置是否成功生效</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">lsmod | grep bbr</span><br></pre></td></tr></table></figure>
+
+<p>输出→tcp_bbr 20480 0</p>
+<p>如果有如上类似输出，则证明Google BBR配置成功了。</p>
+<h2 id="Centos7升级内核并开启bbr"><a href="#Centos7升级内核并开启bbr" class="headerlink" title="Centos7升级内核并开启bbr"></a>Centos7升级内核并开启bbr</h2><p>Centos8Debian/Ubuntu系统一般默认内核都是4.9以上所以只需上面3个命令就可以直接开启，CentOS 7一般默认内核没有4.9需要升级内核，可以使用秋水大佬的脚本(此链接需挂梯子)一键升级内核并开启bbr，具体操作步骤如下</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum install wget</span><br><span class="line"></span><br><span class="line">wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh &amp;&amp; chmod +x bbr.sh &amp;&amp; ./bbr.sh</span><br></pre></td></tr></table></figure>
+
+<p>安装完成后，脚本会提示需要重启 VPS，输入 y 并回车后重启。</p>
+<p>重启后执行如下命令查看配置是否成功生效</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">lsmod | grep bbr</span><br></pre></td></tr></table></figure>
+
+<p>输出→tcp_bbr 20480 0</p>
+<p>如果有如上类似输出，则证明Google BBR配置成功了。</p>
+]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+      </tags>
+  </entry>
+</search>
