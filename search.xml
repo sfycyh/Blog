@@ -11,7 +11,7 @@
 
 <p>输出→tcp_bbr 20480 0</p>
 <p>如果有如上类似输出，则证明Google BBR配置成功了。</p>
-<h2 id="Centos7升级内核并开启bbr"><a href="#Centos7升级内核并开启bbr" class="headerlink" title="Centos7升级内核并开启bbr"></a>Centos7升级内核并开启bbr</h2><p>Centos8Debian/Ubuntu系统一般默认内核都是4.9以上所以只需上面3个命令就可以直接开启，CentOS 7一般默认内核没有4.9需要升级内核，可以使用秋水大佬的脚本(此链接需挂梯子)一键升级内核并开启bbr，具体操作步骤如下</p>
+<h2 id="Centos7升级内核并开启bbr"><a href="#Centos7升级内核并开启bbr" class="headerlink" title="Centos7升级内核并开启bbr"></a>Centos7升级内核并开启bbr</h2><p>Centos8Debian/Ubuntu系统一般默认内核都是4.9以上所以只需上面3个命令就可以直接开启，CentOS 7一般默认内核没有4.9需要升级内核，可以使用秋水大佬的脚本一键升级内核并开启bbr，具体操作步骤如下</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum install wget</span><br><span class="line"></span><br><span class="line">wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh &amp;&amp; chmod +x bbr.sh &amp;&amp; ./bbr.sh</span><br></pre></td></tr></table></figure>
 
 <p>安装完成后，脚本会提示需要重启 VPS，输入 y 并回车后重启。</p>
